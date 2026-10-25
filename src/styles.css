@@ -1,0 +1,274 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-tech: var(--tech);
+  --color-tech-on-deep: var(--tech-on-deep);
+  --color-teal-on-deep: var(--teal-on-deep);
+  --color-teal: var(--teal);
+  --color-health: var(--health);
+  --color-health-soft: var(--health-soft);
+  --color-deep: var(--deep);
+  --color-deep-foreground: var(--deep-foreground);
+  --color-coral: var(--coral);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.004 250);
+  --foreground: oklch(0.24 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.24 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.24 0.02 260);
+  --primary: oklch(0.32 0.11 262);
+  --primary-foreground: oklch(0.985 0.004 250);
+  --secondary: oklch(0.955 0.012 250);
+  --secondary-foreground: oklch(0.32 0.11 262);
+  --muted: oklch(0.955 0.01 250);
+  --muted-foreground: oklch(0.45 0.025 258);
+  --accent: oklch(0.94 0.025 250);
+  --accent-foreground: oklch(0.32 0.11 262);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.91 0.01 255);
+  --input: oklch(0.91 0.01 255);
+  --ring: oklch(0.55 0.17 255);
+  --tech: oklch(0.48 0.15 255);
+  --tech-on-deep: oklch(0.78 0.1 245);
+  --teal: oklch(0.5 0.085 195);
+  --teal-on-deep: oklch(0.8 0.09 190);
+  --health: oklch(0.5 0.08 190);
+  --health-soft: oklch(0.96 0.02 195);
+  --deep: oklch(0.22 0.07 262);
+  --deep-foreground: oklch(0.96 0.01 250);
+  --coral: #ff6b5f;
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0; }
+  section[id] { scroll-margin-top: 5rem; }
+}
+
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tech);
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  &.is-visible { opacity: 1; transform: none; }
+}
+
+@utility hero-grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--primary) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--primary) 6%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 70% 40%, black 20%, transparent 70%);
+}
+
+@layer base {
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p, li, dd { text-wrap: pretty; }
+}
+
+@keyframes concept-in {
+  from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes sep-in {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+@utility concept-word {
+  display: inline-block;
+  opacity: 0;
+  animation: concept-in 0.9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+@utility concept-sep {
+  display: inline-block;
+  opacity: 0;
+  animation: sep-in 0.6s ease forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .concept-word, .concept-sep { animation: none; opacity: 1; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* QA Precision Halo: halo coral que sigue el mouse (solo pointer fino) */
+.qa-halo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in oklab, var(--coral) 75%, transparent);
+  background: color-mix(in oklab, var(--coral) 10%, transparent);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--coral) 22%, transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease, width 0.3s ease, height 0.3s ease,
+    background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+}
+.qa-halo.is-on { opacity: 1; }
+.qa-halo.is-active {
+  width: 44px;
+  height: 44px;
+  border-color: color-mix(in oklab, var(--coral) 95%, transparent);
+  background: color-mix(in oklab, var(--coral) 16%, transparent);
+  box-shadow: 0 0 22px color-mix(in oklab, var(--coral) 32%, transparent);
+}
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .qa-halo { display: none; }
+}
+
+/* Acento coral en las tarjetas de Dirección profesional: resplandor sutil al interactuar */
+.direction-card {
+  position: relative;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+.direction-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--coral) 70%, transparent), transparent 45%, color-mix(in oklab, var(--teal) 55%, transparent));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.direction-card:hover,
+.direction-card:focus-within {
+  border-color: color-mix(in oklab, var(--coral) 40%, var(--border));
+  box-shadow: 0 12px 32px -18px color-mix(in oklab, var(--coral) 45%, transparent);
+  transform: translateY(-2px);
+}
+.direction-card:hover::before,
+.direction-card:focus-within::before {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .direction-card, .direction-card::before { transition: none; }
+  .direction-card:hover { transform: none; }
+}
+
+/* Marco coral con reflejo que se desplaza al interactuar (tarjeta de Proyectos) */
+.coral-frame {
+  position: relative;
+  transition: box-shadow 0.4s ease;
+}
+.coral-frame::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--coral) 55%, transparent) 0%,
+    color-mix(in oklab, var(--tech) 30%, transparent) 35%,
+    color-mix(in oklab, var(--coral) 20%, transparent) 60%,
+    color-mix(in oklab, var(--coral) 60%, transparent) 100%
+  );
+  background-size: 220% 220%;
+  background-position: 0% 50%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.55;
+  transition: opacity 0.4s ease, background-position 1.2s ease;
+  pointer-events: none;
+}
+.coral-frame:hover,
+.coral-frame:focus-within {
+  box-shadow: 0 14px 36px -20px color-mix(in oklab, var(--coral) 40%, transparent);
+}
+.coral-frame:hover::before,
+.coral-frame:focus-within::before {
+  opacity: 1;
+  background-position: 100% 50%;
+}
+@media (prefers-reduced-motion: reduce) {
+  .coral-frame, .coral-frame::before { transition: none; }
+}
+
+@layer base {
+  a:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+}
+
+/* The CV keeps its own readable, single-column paper presentation. */
+.cv-document { overflow-wrap: anywhere; }
+.cv-document h1, .cv-document h2, .cv-document header > p { letter-spacing: 0; }
+@media print {
+  @page { size: A4; margin: 15mm 17mm; }
+  .cv-controls { display: none; }
+  .cv-page { background: var(--card); padding: 0; }
+  .cv-document {
+    max-width: none;
+    padding: 0;
+    box-shadow: none;
+    font-family: Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.4;
+  }
+  .cv-document h1 { font-size: 21pt; }
+  .cv-document h2, .cv-document header > p { font-size: 10pt; }
+  .cv-document h3 { font-size: 10.5pt; }
+  .cv-document section { margin-top: 12pt; }
+  .cv-document section > div { margin-bottom: 8pt; }
+  .cv-document h2, .cv-document h3 { break-after: avoid; }
+  .cv-document li, .cv-document section > div { break-inside: avoid; }
+  .cv-document p { orphans: 3; widows: 3; }
+  .cv-document .cv-skills { break-before: page; margin-top: 0; }
+}
