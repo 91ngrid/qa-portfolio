@@ -1,47 +1,33 @@
-# QAIngrid | QA Testing Portfolio
+<div align="center">
 
-¡Hola! Soy Ingrid, QA Tester interesada en la calidad del software, procesos de negocio y soluciones digitales.
+<!-- Banner (Colocar imagen en /assets/banner-qa.png) -->
+<img src="./assets/qa-banner.png" alt="QA Portfolio Banner" width="100%" />
 
-Este repositorio contiene el código de mi portfolio en construcción, donde comparto mi perfil, mis proyectos y mi evolución en el mundo de Quality Assurance.
+<br/><br/>
 
-## Sobre el proyecto
+# # Portfolio QA
 
-QAIngrid es mi espacio profesional para documentar mi aprendizaje, demostrar mis habilidades y construir proyectos prácticos de testing.
+[![Role](https://img.shields.io/badge/Role-QA%20Analyst%20Ssr-emerald?style=for-the-badge)](https://github.com/91ngrid)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Perfil-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/ingridriosromillo)
 
-**Objetivos:**
-- Presentar mi perfil y experiencia en QA.
-- Compartir proyectos y ejercicios prácticos de testing.
-- Desarrollar habilidades en API Testing y automatización.
-- Orientar mi crecimiento profesional hacia HealthTech.
-
-## Tecnologías
-
-- Git y GitHub
-- TypeScript
-
-## Demo
-
-🌐 **Portfolio:** [https://qaingrid.vercel.app](https://qaingrid.vercel.app)
-
-## Ejecutar localmente
-
-Requisitos: Node.js y npm.
-
-```bash
-git clone https://github.com/91ingrid/qa-portfolio.git
-cd qa-portfolio
-npm install
-npm run dev
-```
-
-## Próximamente
-
-Incorporar proyectos prácticos de QA, pruebas de API y documentación de casos de prueba para mostrar mi evolución profesional.
+*Código fuente de mi sitio web de presentación profesional y hub de proyectos de testing.*
 
 ---
 
-**Ingrid Ríos Romillo**  
-SSR QA Analyst
+</div>
 
-[LinkedIn](https://www.linkedin.com/in/ingridriosromillo) · [Portfolio](https://qaingrid.vercel.app)
+## Sobre este proyecto
 
+Este repositorio contiene la estructura y el código de mi web personal. El sitio fue creado para centralizar mi perfil profesional como QA, integrando mi background en el sector sanitario con mi experiencia en testing de software.
+
+La landing funciona también como un punto de acceso principal hacia los proyectos técnicos y casos de estudio que desarrollo en repositorios independientes.
+
+---
+
+## Estructura de la Web
+
+```mermaid
+graph TD
+    A[Landing Page Web] --> B[Perfil & Trayectoria QA]
+    A --> C[Especialización HealthTech & Farmacia]
+    A --> D[Caso de Estudio: QA Medicamentos]
